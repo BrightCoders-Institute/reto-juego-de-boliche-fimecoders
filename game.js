@@ -4,7 +4,7 @@ class Bowling{
     this.throw1 = [];
     this.throw2 = [];
     this.scores = [];
-    this.throws = 1;
+    this.round = 1;
   }
 
   bowlingThrow(){
@@ -19,7 +19,10 @@ class Bowling{
   }
 
   bowlingGame(){
-    
+    while (this.round < 10){
+      this.bowlingThrow();
+      this.round++;
+    }
   }
 }
 const game= new Bowling();
