@@ -70,6 +70,7 @@ class Bowling {
         this.scores[9] += extraThrow;
       }
     }
+    this.bowlingScore();
   }
 
   /**
@@ -110,12 +111,9 @@ class Bowling {
     console.log(score);
 
     if (this.isStrike(9) || this.isSpare(9)) {
-      console.log(`¡Aquí hubo un 
-        ${this.isStrike(9) ? 'strike' : 'spare'} 
-        en el décimo frame! \n 
-        Los  ${this.throws[20]} 
-        puntos extra se han sumado a la puntuación final.\n`,
-      );
+      console.log(`¡Aquí hubo un ${this.isStrike(9) ? 'strike' : 'spare'} 
+      en el décimo frame! \n Los  ${this.throws[20]} 
+      puntos extra se han sumado a la puntuación final.\n`);
     }
   }
 }
