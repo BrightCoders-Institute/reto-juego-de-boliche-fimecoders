@@ -4,4 +4,3 @@ const game = new Bowling();
 
 game.bowlingGame();
 game.bowlingScore();
-

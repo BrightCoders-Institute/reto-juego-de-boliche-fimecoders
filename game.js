@@ -69,7 +69,6 @@ class Bowling {
     }
   }
 
-
   /**
    * Calculates and displays the bowling score.
    */
@@ -80,7 +79,7 @@ class Bowling {
 
     for (let i = 0; i < 10; i++) {
       throws = throws.concat(
-          this.throws[i * 2],
+        this.throws[i * 2],
         String(this.throws[i * 2]).length === 2 ? ' ' : '  ',
         this.throws[i * 2 + 1],
         String(this.throws[i * 2 + 1]).length === 2 ? '' : ' ',
@@ -90,7 +89,7 @@ class Bowling {
       frameScore = this.scores[i];
 
       score = score.concat(
-          frameScore,
+        frameScore,
         String(frameScore).length === 1 ? '    ' :
           String(frameScore).length === 2 ? '   ' : '  ',
         '|',
@@ -99,8 +98,8 @@ class Bowling {
 
     if (this.throws.length > 20) {
       throws = throws.concat(
-          this.throws[20],
-          '  |',
+        this.throws[20],
+        '  |',
       );
     }
 
@@ -110,8 +109,8 @@ class Bowling {
     if (this.isStrike(9) || this.isSpare(9)) {
       console.log(`¡Aquí hubo un 
         ${this.isStrike(9) ? 'strike' : 'spare'} 
-        en el décimo frame! \n Los  
-        ${this.throws[20]} 
+        en el décimo frame! \n 
+        Los  ${this.throws[20]} 
         puntos extra se han sumado a la puntuación final.\n`,
       );
     }
@@ -120,4 +119,3 @@ class Bowling {
 
 
 module.exports = Bowling;
-
