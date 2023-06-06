@@ -70,6 +70,7 @@ class Bowling {
         this.scores[9] += extraThrow;
       }
     }
+
     this.bowlingScore();
   }
 
@@ -92,8 +93,7 @@ class Bowling {
 
       frameScore = this.scores[i];
 
-      score = score.concat(
-          frameScore,
+      score = score.concat(frameScore,
         String(frameScore).length === 1 ? '    ' :
           String(frameScore).length === 2 ? '   ' : '  ',
         '|',
