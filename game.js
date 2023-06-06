@@ -1,44 +1,51 @@
 class Bowling {
   constructor() {
-    this.throw1 = [];
-    this.throw2 = [];
+    this.throws = [];
     this.scores = [];
-    this.round = 0;
   }
 
   bowlingThrow() {
-    const throw1 = Math.floor(Math.random() * 11);
+    let throw1 = Math.floor(Math.random() * 11);
     let throw2 = 0;
-    this.throw1.push(throw1);
-    if (this.round === 9 && (throw1 === 10 || this.isSpare(this.round))) {
-      throw2 = Math.floor(Math.random() * 11);
-    } else if (throw1 !== 10) {
+    if (throw1 !== 10) {
       throw2 = Math.floor(Math.random() * (11 - throw1));
     }
-    this.throw2.push(throw2);
+
+    this.throws.push(throw1, throw2);
+
+    let round = this.throws.length / 2 - 1;
+
     let resultado = throw1 + throw2;
+    if (round !== 0) {
+      resultado += this.scores[round - 1];
 
-    if (this.round !== 0) {
-      resultado += this.scores[this.round - 1];
-
-      if (this.isStrike(this.round - 1)) {
+      if (this.isStrike(round - 1)) {
         resultado += throw1 + throw2;
-      } else if (this.isSpare(this.round - 1)) {
+      } else if (this.isSpare(round - 1)) {
         resultado += throw1;
       }
     }
+
     this.scores.push(resultado);
   }
+
   isStrike(round) {
-    return this.throw1[round] === 10;
+    return this.throws[round * 2] === 10;
   }
+
   isSpare(round) {
-    return this.throw1[round] + this.throw2[round] === 10;
+    return this.throws[round * 2] + this.throws[round * 2 + 1] === 10;
   }
+
   bowlingGame() {
-    while (this.round < 10) {
+    for (let round = 0; round < 10; round++) {
       this.bowlingThrow();
-      this.round++;
+
+      if (round === 9 && (this.isStrike(9) || this.isSpare(9))) {
+        const extraThrow = Math.floor(Math.random() * 11);
+        this.throws.push(extraThrow);
+        this.scores[9] += extraThrow;
+      }
     }
   }
 
@@ -46,27 +53,38 @@ class Bowling {
     let throws = "";
     let score = "";
     let frameScore = 0;
+
     for (let i = 0; i < 10; i++) {
       throws = throws.concat(
-        this.throw1[i],
-        String(this.throw1[i]).length === 2 ? " " : "  ",
-        this.throw2[i],
-        String(this.throw2[i]).length === 2 ? "" : " ",
+        this.throws[i * 2],
+        String(this.throws[i * 2]).length === 2 ? " " : "  ",
+        this.throws[i * 2 + 1],
+        String(this.throws[i * 2 + 1]).length === 2 ? "" : " ",
         "|"
       );
 
+      frameScore = this.scores[i];
+
       score = score.concat(
-        this.scores[i],
-        String(this.scores[i]).length === 1
-          ? "    "
-          : String(this.scores[i]).length === 2
-          ? "   "
-          : "  ",
+        frameScore,
+        String(frameScore).length === 1 ? "    " : String(frameScore).length === 2 ? "   " : "  ",
         "|"
       );
     }
+
+    if (this.throws.length > 20) {
+      throws = throws.concat(
+        this.throws[20],
+        "  |"
+      );
+    }
+
     console.log(throws);
     console.log(score);
+
+    if (this.isStrike(9) || this.isSpare(9)) {
+      console.log(`¡Aquí hubo un ${this.isStrike(9) ? "strike" : "spare"} en el décimo frame! \n Los  ${this.throws[20]} puntos extra se han sumado a la puntuación final.\n`);
+    }
   }
 }
 
