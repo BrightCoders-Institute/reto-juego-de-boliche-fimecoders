@@ -1,3 +1,6 @@
+[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/9mI3rT9o)
+![BrightCoders Logo](img/logo.png)
+
 # Reto: Juego de Boliche Fimecoders
 
 Este es el repositorio del Reto de Juego de Boliche para el programa de formación de BrightCoders Institute.
