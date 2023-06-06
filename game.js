@@ -9,6 +9,7 @@ class Bowling {
     this.throws = [];
     this.scores = [];
   }
+
   /**
    * Simulates a throw in a bowling game.
    * Calculates the score and updates the throws and scores arrays.
@@ -37,6 +38,7 @@ class Bowling {
 
     this.scores.push(resultado);
   }
+
   /**
    * Checks if the throw in a specified round was a strike.
    * @param {number} round - The round to check.
@@ -45,6 +47,7 @@ class Bowling {
   isStrike(round) {
     return this.throws[round * 2] === 10;
   }
+
   /**
    * Checks if the throw in a specified round was a spare.
    * @param {number} round - The round to check.
@@ -79,7 +82,7 @@ class Bowling {
 
     for (let i = 0; i < 10; i++) {
       throws = throws.concat(
-        this.throws[i * 2],
+          this.throws[i * 2],
         String(this.throws[i * 2]).length === 2 ? ' ' : '  ',
         this.throws[i * 2 + 1],
         String(this.throws[i * 2 + 1]).length === 2 ? '' : ' ',
@@ -89,7 +92,7 @@ class Bowling {
       frameScore = this.scores[i];
 
       score = score.concat(
-        frameScore,
+          frameScore,
         String(frameScore).length === 1 ? '    ' :
           String(frameScore).length === 2 ? '   ' : '  ',
         '|',
@@ -98,8 +101,8 @@ class Bowling {
 
     if (this.throws.length > 20) {
       throws = throws.concat(
-        this.throws[20],
-        '  |',
+          this.throws[20],
+          '  |',
       );
     }
 
